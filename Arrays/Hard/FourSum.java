@@ -8,30 +8,33 @@ import java.util.List;
 
 class FourSum {
     public static void main(String[] args) {
-        int[] nums = {-1, 0, 1, 2, -1, -4};
-        System.out.println(threeSum(nums));
+        int[] nums = {1,0,-1,0,-2,2};
+        int target = 0;
+        System.out.println(fourSum(nums,target));
     }
 
-    public static List<List<Integer>> threeSum(int[] nums) {
+    public static List<List<Integer>> fourSum(int[] nums, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        int sum = 0;
+      
 
         Arrays.sort(nums);
 
         for (int i = 0; i < nums.length; i++) {
-             
-            if (i > 0 && nums[i] == nums[i - 1]) continue;
 
-            
+             if (i > 0 && nums[i] == nums[i - 1]) continue;
+            for (int j = i+1; j < nums.length; j++) {
 
-            int l = i + 1;
+                if (j > i+1 && nums[j] == nums[j-1]) continue;
+
+            int l = j + 1;
             int r = nums.length - 1;
             
             while (l < r) {
-                int total = nums[i] + nums[l] + nums[r];
+                long total = (long)nums[i] + nums[j] + nums[l] + nums[r];
 
-                 if (total == sum) {
-                     result.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                 if (total == target) {
+                     result.add(Arrays.asList(nums[i], nums[j], nums[l], nums[r]));
+
                     l++;
                     r--;
 
@@ -41,13 +44,14 @@ class FourSum {
                     // skip duplicates for r
                     while (l < r && nums[r] == nums[r + 1]) r--;
 
-                } else if (total < sum) {
+                } else if (total < target) {
                     l++;
                 } else {
                     r--;    
                 }
                 
             }
+        }
         }
 
 
