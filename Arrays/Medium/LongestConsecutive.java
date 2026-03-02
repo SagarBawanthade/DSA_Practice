@@ -1,9 +1,7 @@
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LongestConsecutive {
     public static void main(String[] args) {
-        int[] nums = {100, 4, 200, 1, 3, 2};
+        int[] nums = { 100, 4, 200, 1, 3, 2 };
         System.out.println("Longest Consecutive Length: " + longestConsecutive(nums));
     }
 
@@ -23,12 +21,9 @@ public class LongestConsecutive {
             }
         }
 
-     
-
         int maxCount = 0;
 
         int count = 0;
-        
 
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] + 1 == nums[i + 1]) {
@@ -43,8 +38,6 @@ public class LongestConsecutive {
         maxCount = Math.max(maxCount, count);
 
         return maxCount + 1;
-        
-        
+
     }
 }
-
