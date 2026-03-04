@@ -8,20 +8,24 @@ public class KPositiveInteger {
     }
 
     public static int findKthPositive(int[] arr, int k){
-        int missingCount = 0;
-        int currentNum = 1;
+         int left = 0;
+        int right = arr.length - 1;
 
-        while(true){
-            if(currentNum == arr[missingCount]){
-                missingCount++;
+        while(left <= right){
+            int mid = (left + right) / 2;
+
+            int missing = arr[mid] - (mid + 1);
+
+            if(missing < k){
+                left = mid + 1;
             }else{
-                k--;
-                if(k == 0){
-                    return currentNum;
-                }
+                right = mid - 1;
             }
-            currentNum++;
         }
-    }
+
+        return left + k;
+    
+
+    } 
     
 }
