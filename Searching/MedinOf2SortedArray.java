@@ -7,41 +7,48 @@ public class MedinOf2SortedArray {
         System.out.println(findMedianSortedArrays(arr1, arr2));
     }
 
-    public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
-        if(nums1.length > nums2.length){
-            return findMedianSortedArrays(nums2, nums1);
+     public static double findMedianSortedArrays(int[] a, int[] b) {
+
+        if (a.length > b.length) {
+            return findMedianSortedArrays(b, a);
         }
 
-        int x = nums1.length;
-        int y = nums2.length;
+        int m = a.length;
+        int n = b.length;
 
         int low = 0;
-        int high = x;
+        int high = m;
 
-        while(low <= high){
-            int partitionX = (low + high) / 2;
-            int partitionY = (x + y + 1) / 2 - partitionX;
+        while (low <= high) {
 
-            int maxLeftX = (partitionX == 0) ? Integer.MIN_VALUE : nums1[partitionX - 1];
-            int minRightX = (partitionX == x) ? Integer.MAX_VALUE : nums1[partitionX];
+            int cutA = (low + high) / 2;
+            int cutB = (m + n + 1) / 2 - cutA;
 
-            int maxLeftY = (partitionY == 0) ? Integer.MIN_VALUE : nums2[partitionY - 1];
-            int minRightY = (partitionY == y) ? Integer.MAX_VALUE : nums2[partitionY];
+            int leftA = (cutA == 0) ? Integer.MIN_VALUE : a[cutA - 1];
+            int rightA = (cutA == m) ? Integer.MAX_VALUE : a[cutA];
 
-            if(maxLeftX <= minRightY && maxLeftY <= minRightX){
-                if((x + y) % 2 == 0){
-                    return ((double)Math.max(maxLeftX, maxLeftY) + Math.min(minRightX, minRightY)) / 2;
-                }else{
-                    return (double)Math.max(maxLeftX, maxLeftY);
+            int leftB = (cutB == 0) ? Integer.MIN_VALUE : b[cutB - 1];
+            int rightB = (cutB == n) ? Integer.MAX_VALUE : b[cutB];
+
+            if (leftA <= rightB && leftB <= rightA) {
+
+                if ((m + n) % 2 == 0) {
+                    return (Math.max(leftA, leftB) + Math.min(rightA, rightB)) / 2.0;
                 }
-            }else if(maxLeftX > minRightY){
-                high = partitionX - 1;
-            }else{
-                low = partitionX + 1;
+
+                return Math.max(leftA, leftB);
+            }
+
+            else if (leftA > rightB) {
+                high = cutA - 1;
+            }
+
+            else {
+                low = cutA + 1;
             }
         }
 
-        throw new IllegalArgumentException();
+        return 0;
     }
     
 }
