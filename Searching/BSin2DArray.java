@@ -11,6 +11,7 @@ public class BSin2DArray {
         boolean ans = searchMatrix(arr, target);
         System.out.println(ans);
     }
+    
 
     public static boolean searchMatrix(int[][] matrix, int target) {
         int l  = 0;
