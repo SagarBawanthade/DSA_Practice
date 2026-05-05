@@ -16,6 +16,7 @@ class SelectionSort{
                     min_index = j;
                 }
             }
+            
         
             int temp = arr[i];
             arr[i] = arr[min_index];
